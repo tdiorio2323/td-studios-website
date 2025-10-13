@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useCart } from "@/hooks/useCart";
+import { useCart } from '@/hooks/use-cart';
 import GlassCard from "@/components/GlassCard";
 
 type Props = {

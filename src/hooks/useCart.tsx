@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useEffect, useMemo, useState, useCallback } from 'react';
 
 export type CartItem = {
   id: string;
@@ -17,9 +17,9 @@ type CartContextValue = {
   clear: () => void;
 };
 
-const CartContext = createContext<CartContextValue | null>(null);
+export const CartContext = createContext<CartContextValue | null>(null);
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
 
   // Hydrate from localStorage
@@ -44,7 +44,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [items]);
 
-  const addItem: CartContextValue['addItem'] = ({ name, image, subtitle }) => {
+  const addItem = useCallback<CartContextValue['addItem']>(({ name, image, subtitle }) => {
     const id = `${name}|${image}`;
     setItems((prev) => {
       const idx = prev.findIndex((i) => i.id === id);
@@ -55,9 +55,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
       return [...prev, { id, name, image, subtitle, quantity: 1 }];
     });
-  };
+  }, []);
 
-  const decreaseItem: CartContextValue['decreaseItem'] = (id) => {
+  const decreaseItem = useCallback<CartContextValue['decreaseItem']>((id) => {
     setItems((prev) => {
       const idx = prev.findIndex((i) => i.id === id);
       if (idx < 0) return prev;
@@ -67,23 +67,17 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       next[idx] = { ...target, quantity: target.quantity - 1 };
       return next;
     });
-  };
+  }, []);
 
-  const removeItem: CartContextValue['removeItem'] = (id) => {
+  const removeItem = useCallback<CartContextValue['removeItem']>((id) => {
     setItems((prev) => prev.filter((i) => i.id !== id));
-  };
+  }, []);
 
-  const clear: CartContextValue['clear'] = () => setItems([]);
+  const clear = useCallback<CartContextValue['clear']>(() => setItems([]), []);
 
   const totalCount = useMemo(() => items.reduce((sum, i) => sum + i.quantity, 0), [items]);
 
-  const value = useMemo<CartContextValue>(() => ({ items, totalCount, addItem, decreaseItem, removeItem, clear }), [items, totalCount]);
+  const value = useMemo<CartContextValue>(() => ({ items, totalCount, addItem, decreaseItem, removeItem, clear }), [items, totalCount, addItem, decreaseItem, removeItem, clear]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
-
-export function useCart() {
-  const ctx = useContext(CartContext);
-  if (!ctx) throw new Error('useCart must be used within a CartProvider');
-  return ctx;
-}

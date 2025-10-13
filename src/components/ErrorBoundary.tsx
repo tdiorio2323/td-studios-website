@@ -10,16 +10,9 @@ interface ErrorBoundaryState {
   error: Error | null;
 }
 
-const logErrorToService = (error: Error, errorInfo: React.ErrorInfo) => {
-  // In development, log to console
-  if (import.meta.env.DEV) {
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
-  }
+import { logErrorToService } from './error-boundary-utils';
 
-  // In production, you could send to an error tracking service
-  // Example: Sentry, LogRocket, etc.
-};
-
+// Internal component - not exported to avoid HMR issues
 const DefaultFallback: React.FC<{ error: Error; resetErrorBoundary: () => void }> = ({
   error,
   resetErrorBoundary

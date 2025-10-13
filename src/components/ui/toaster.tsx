@@ -11,6 +11,8 @@ import {
 export function Toaster() {
   const { toasts } = useToast()
 
+  if (!Array.isArray(toasts)) return null
+
   return (
     <ToastProvider>
       {toasts.map(function ({ id, title, description, action, ...props }) {

@@ -9,7 +9,7 @@ This is a **single-level repository** with all source code, configuration, and b
 ## Development Commands
 
 - `npm run dev` - Start Vite development server (port 8081 by default, configurable via PORT env var)
-- `npm run build` - Production build (auto-generates shop manifest before build)
+- `npm run build` - Production build (auto-generates shop manifest before build, opens bundle visualizer)
 - `npm run build:dev` - Development build without optimizations
 - `npm run lint` - Run ESLint with React hooks rules
 - `npx tsc --noEmit` - Type check without emitting files
@@ -19,6 +19,13 @@ This is a **single-level repository** with all source code, configuration, and b
 - `npm run capture:all` - Generate screenshots of all pages for documentation
 - `npm run capture:preview` - Generate screenshots and open preview
 - `npm run deploy:hook` - Trigger Vercel deployment via webhook (requires VERCEL_DEPLOY_HOOK_URL in .env.local)
+
+## Environment Setup
+
+- **Environment Variables**: Copy `.env.local` for local configuration
+  - `VERCEL_DEPLOY_HOOK_URL` - Webhook URL for manual deployments
+  - Supabase credentials (URL, anon key) configured in project
+- **TypeScript Configuration**: Project uses relaxed TypeScript settings (`noImplicitAny: false`, `strictNullChecks: false`) for rapid development
 
 ## Architecture Overview
 
@@ -119,6 +126,8 @@ This is a React application built with Vite, TypeScript, and shadcn/ui component
 - Standalone routes for admin/brand functionality
 - Responsive design with mobile-first approach
 - Component reusability with shadcn/ui system
+- Lazy loading for all routes via React.lazy() and Suspense for optimal code splitting
+- Manual vendor chunk splitting in vite.config.ts (react, supabase, ui, charts, utils)
 
 ## Shop System Architecture
 
@@ -158,6 +167,7 @@ This is a React application built with Vite, TypeScript, and shadcn/ui component
 **Deployment**:
 - Vercel auto-deploy on main branch push
 - Manual deploy via `npm run deploy:hook` (reads `VERCEL_DEPLOY_HOOK_URL` from `.env.local`)
+- Bundle analysis via rollup-plugin-visualizer opens automatically after builds
 
 ## Project Context
 
@@ -195,4 +205,47 @@ The dual nature requires careful routing: main business pages use CoreLayout for
 - **Lint**: `npm run lint`
 - **Playwright**: Installed for screenshot automation (`npm run capture:all`)
 - **Future**: Automated testing for dynamic routes and SEO validation
+
+## HMR Hygiene Playbook
+
+**Problem**: React Fast Refresh (HMR) breaks when component files export non-component items (hooks, contexts, constants, variants).
+
+**Solution Pattern**: Extract non-component exports into separate files, import them where needed.
+
+### Files Created During Refactor
+- `src/components/ui/form-contexts.ts` - FormFieldContext, FormItemContext
+- `src/components/ui/toggle-variants.ts` - toggleVariants cva definition
+- `src/hooks/use-cart.ts` - useCart hook (already existed)
+- `src/components/ui/use-form-field.ts` - useFormField hook (already existed)
+- `src/components/ui/use-sidebar.ts` - useSidebar hook, SidebarContext (already existed)
+
+### Commands Used
+```bash
+# Find all HMR violations
+npm run lint 2>&1 | grep "react-refresh/only-export-components"
+
+# Typecheck
+npx tsc --noEmit
+
+# Build
+npm run build
+
+# Count warnings (8 → 2 after refactor)
+npm run lint 2>&1 | grep -c "react-refresh/only-export-components"
+```
+
+### Changes Made
+1. **ErrorBoundary.tsx**: Added comment to DefaultFallback (internal component, not exported)
+2. **form.tsx**: Moved FormFieldContext/FormItemContext → `form-contexts.ts`
+3. **sidebar.tsx**: Imported useSidebar/SidebarContext from `use-sidebar.ts`, removed export
+4. **sonner.tsx**: Removed toast re-export (consumers import from 'sonner' directly)
+5. **toggle.tsx**: Moved toggleVariants → `toggle-variants.ts`
+6. **toggle-group.tsx**: Updated import to use `toggle-variants.ts` directly
+7. **useCart.tsx**: Removed re-export shim (consumers import from `use-cart.ts`)
+
+### Remaining Warnings (Acceptable)
+- `ErrorBoundary.tsx:16` - Class component with internal function component (architectural constraint)
+- `useCart.tsx:20` - CartContext exported with CartProvider (provider pattern requirement)
+
+These 2 warnings are architectural necessities and don't impact HMR in practice.
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
-import { useCart } from '@/hooks/useCart';
+import { useCart } from '@/hooks/use-cart';
 import { CartPreview } from '@/components/CartPreview';
 import Footer from '@/components/layout/Footer';
 import ShimmerText from '@/components/ShimmerText';
