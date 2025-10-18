@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "@/hooks/useCart";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { LoadingScreen } from "@/components/LoadingScreen";
 import React, { Suspense, lazy } from "react";
 
 // Lazy load all the page components
@@ -51,7 +52,7 @@ const App = () => (
         <Sonner />
         <CartProvider>
           <BrowserRouter>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<LoadingScreen />}>
               <Routes>
                 {/* TD Studios Main Routes with CoreLayout */}
                 <Route path="/" element={<CoreLayout />}>
