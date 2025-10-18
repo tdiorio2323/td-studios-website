@@ -1,14 +1,14 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
-          "value": "www.tdstudiosdigital.com"
+          "value": "tdstudiosdigital.com"
         }
       ],
-      "destination": "https://tdstudiosdigital.com/$1",
+      "destination": "https://www.tdstudiosdigital.com/:path*",
       "permanent": true
     }
   ],

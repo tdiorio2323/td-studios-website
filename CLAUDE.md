@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a **single-level repository** with all source code, configuration, and build files at the root level. All development commands should be run from the repository root.
 
+**Note**: The `td-studios-digital/` subdirectory contains a separate Next.js project with its own package.json and dependencies. This is a standalone application and not part of the main Vite build.
+
 ## Development Commands
 
 - `npm run dev` - Start Vite development server (port 8081 by default, configurable via PORT env var)
@@ -22,9 +24,10 @@ This is a **single-level repository** with all source code, configuration, and b
 
 ## Environment Setup
 
-- **Environment Variables**: Copy `.env.local` for local configuration
-  - `VERCEL_DEPLOY_HOOK_URL` - Webhook URL for manual deployments
-  - Supabase credentials (URL, anon key) configured in project
+- **Environment Variables**: Configuration in `.env.local` (create from template if needed)
+  - `VITE_SUPABASE_URL` - Supabase project URL (https://crpalakzdzvtgvljlutd.supabase.co)
+  - `VITE_SUPABASE_ANON_KEY` - Supabase anonymous/public key (safe for frontend)
+  - `VERCEL_DEPLOY_HOOK_URL` - Webhook URL for manual deployments via `npm run deploy:hook`
 - **TypeScript Configuration**: Project uses relaxed TypeScript settings (`noImplicitAny: false`, `strictNullChecks: false`) for rapid development
 
 ## Architecture Overview
@@ -68,23 +71,24 @@ This is a React application built with Vite, TypeScript, and shadcn/ui component
 - `/__card-editor` - Mass card editor
 - `/__components` - Component library
 
-**Dynamic Routes**:
-- `/:slug` - Dynamic auth card pages (catch-all route, must be defined above 404)
+**404 Route**:
+- `*` - NotFound page (catch-all route, must be defined last in routing config)
 
 ### Key Architecture Patterns
 
 **CoreLayout System**:
 - `src/layouts/CoreLayout.tsx` - Unified header/footer for TD Studios pages
 - Sticky header with centered TD STUDIOS logo (clickable to home)
-- Desktop: Logo above navigation, MYLAR dropdown menu
+- Desktop: Logo above flat navigation menu
 - Mobile: Logo + hamburger menu with collapsible navigation
 - Footer with company info and quick links
+- Integrated shopping cart in header with quantity indicator
 
 **Navigation Structure**:
 - Main menu: HOME, SHOP, WEBSITES, REFERRAL, CONTACT
-- No dropdown menus - simplified flat navigation
-- Shopping cart button with quantity indicator
-- Mobile: Hamburger menu with collapsible navigation and cart access
+- Flat navigation without dropdowns
+- Shopping cart slide-out accessible from header
+- Mobile: Hamburger menu with full navigation and cart access
 
 **Role-Based Access**:
 - `admin` role → `/admin` dashboard
@@ -182,10 +186,12 @@ The dual nature requires careful routing: main business pages use CoreLayout for
 - `src/App.tsx` - Main routing configuration with CoreLayout vs standalone route separation
 - `src/layouts/CoreLayout.tsx` - Unified TD Studios layout with header/footer
 - `src/pages/Shop.tsx` - Shopping interface with edit mode and layout publishing
-- `src/hooks/useCart.tsx` - Global cart state management
+- `src/hooks/use-cart.ts` - Global cart state management (CartProvider and useCart hook)
+- `src/hooks/useCart.tsx` - Legacy shim file (imports should use use-cart.ts directly)
 - `supabase/` - Database configuration and migrations
 - `scripts/` - Automation tools for page generation, asset processing, deployment
 - `public/td slide/` and `public/shoppagepics/` - Product image directories
+
 ## SEO & Metadata
 
 - **Meta Tags**: Manual meta tag management in HTML head (react-helmet-async not currently installed)
