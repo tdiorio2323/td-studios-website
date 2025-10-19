@@ -2,7 +2,7 @@
 
 ## Fixes & Enhancements
 - Enabled Vite sourcemaps, deterministic manual chunks, and analyze mode output (`vite.config.ts`, `package.json`, `scripts/report-bundles.mjs`).
-- Split cart context from provider to clear react-refresh warnings (`src/hooks/cart-context.ts`, `src/hooks/useCart.tsx`, `src/hooks/use-cart.ts`).
+- Reworked cart provider so the runtime uses a single context instance, eliminating the live “useCart must be used within a CartProvider” crash while keeping lint clean (`src/hooks/useCart.tsx`, `src/hooks/use-cart.ts`, `eslint.config.js`).
 - Externalized error fallback component for HMR safety (`src/components/ErrorBoundary.tsx`, `src/components/ErrorFallback.tsx`).
 - Replaced autoplaying hero video with optimized static hero image + preload to reduce LCP cost (`index.html`, `src/components/AutoSliderBanner.tsx`).
 - Added Vitest harness with first smoke test and npm scripts (`package.json`, `vitest.config.ts`, `vitest.setup.ts`, `src/__tests__/auto-slider-banner.test.tsx`).

@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2025-10-19T02:48:06.886Z",
+  "generatedAt": "2025-10-19T13:58:44.743Z",
   "total": {
     "files": 57,
-    "bytes": 2513833,
-    "gzipBytes": 520555
+    "bytes": 2513800,
+    "gzipBytes": 520590
   },
   "files": [
     {
@@ -32,9 +32,9 @@
       "gzipBytes": 24460
     },
     {
-      "file": "index-D-r0mFNT.js",
+      "file": "index-DKm8VUQS.js",
       "bytes": 95899,
-      "gzipBytes": 23261
+      "gzipBytes": 23259
     },
     {
       "file": "utils-vendor-DZ0rb0Yx.js",
@@ -47,9 +47,9 @@
       "gzipBytes": 3901
     },
     {
-      "file": "Brand-DxBz4LAi.js",
+      "file": "Brand-DGg4tWKv.js",
       "bytes": 29364,
-      "gzipBytes": 4307
+      "gzipBytes": 4308
     },
     {
       "file": "CustomMylarForm-k9kBomcx.js",
@@ -57,19 +57,19 @@
       "gzipBytes": 3277
     },
     {
-      "file": "Shop-DB4cDTRA.js",
+      "file": "Shop-BrqJrRs6.js",
       "bytes": 21542,
       "gzipBytes": 5181
     },
     {
-      "file": "Contact-CUtFfCHP.js",
+      "file": "Contact-CkxznuLn.js",
       "bytes": 19782,
-      "gzipBytes": 3692
+      "gzipBytes": 3693
     },
     {
-      "file": "Checkout-IcIXt1KL.js",
+      "file": "Checkout-u_8-sX7q.js",
       "bytes": 19288,
-      "gzipBytes": 3171
+      "gzipBytes": 3173
     },
     {
       "file": "CustomDesignForm-DTNaNVFH.js",
@@ -77,9 +77,9 @@
       "gzipBytes": 3360
     },
     {
-      "file": "AuthBuilder-DGRz43Cg.js",
+      "file": "AuthBuilder-DsjJzmM6.js",
       "bytes": 17974,
-      "gzipBytes": 4311
+      "gzipBytes": 4316
     },
     {
       "file": "DigitalAssets-ByW7rk9e.js",
@@ -87,7 +87,7 @@
       "gzipBytes": 3322
     },
     {
-      "file": "Referral-D9HsJFrU.js",
+      "file": "Referral-CMZG4HNe.js",
       "bytes": 16104,
       "gzipBytes": 3447
     },
@@ -97,52 +97,52 @@
       "gzipBytes": 3215
     },
     {
-      "file": "MassCardEditor-D16b7tHI.js",
+      "file": "MassCardEditor-C0ss--BA.js",
       "bytes": 14921,
       "gzipBytes": 2999
     },
     {
-      "file": "CoreLayout-btOB05CQ.js",
+      "file": "CoreLayout-Cy5ZD-ig.js",
       "bytes": 13949,
-      "gzipBytes": 3344
+      "gzipBytes": 3345
     },
     {
-      "file": "CustomDesigns-CD3QXRUd.js",
+      "file": "CustomDesigns-BxZD9awP.js",
       "bytes": 13885,
-      "gzipBytes": 3265
+      "gzipBytes": 3266
     },
     {
-      "file": "Admin-DQlKx8mR.js",
+      "file": "Admin-NW99xMn9.js",
       "bytes": 13276,
-      "gzipBytes": 2425
+      "gzipBytes": 2426
     },
     {
-      "file": "ComponentLibrary-CVMK-GJm.js",
+      "file": "ComponentLibrary-GNP6aniE.js",
       "bytes": 11831,
-      "gzipBytes": 2625
+      "gzipBytes": 2626
     },
     {
-      "file": "Home--d0qktsp.js",
-      "bytes": 11471,
-      "gzipBytes": 3190
+      "file": "Home-CKkZ4Mw2.js",
+      "bytes": 11438,
+      "gzipBytes": 3177
     },
     {
-      "file": "CardFlip-CA5modm3.js",
+      "file": "CardFlip-Dsv2BklL.js",
       "bytes": 11373,
-      "gzipBytes": 2610
+      "gzipBytes": 2614
     },
     {
-      "file": "Quickprintz-pnr_HpGj.js",
+      "file": "Quickprintz-BVmAxZzT.js",
       "bytes": 11248,
-      "gzipBytes": 2948
+      "gzipBytes": 2949
     },
     {
-      "file": "Builder-MaM-vxyv.js",
+      "file": "Builder-D80l15dx.js",
       "bytes": 9772,
-      "gzipBytes": 2307
+      "gzipBytes": 2309
     },
     {
-      "file": "Dev-DeayzMKV.js",
+      "file": "Dev-DmNuf-4s.js",
       "bytes": 8554,
       "gzipBytes": 2389
     },
@@ -152,34 +152,34 @@
       "gzipBytes": 1959
     },
     {
-      "file": "Tdlist-Dm5SsbkR.js",
+      "file": "Tdlist-Bq6yLRwu.js",
       "bytes": 7458,
-      "gzipBytes": 2104
+      "gzipBytes": 2106
     },
     {
-      "file": "Web-9Ssq6E8t.js",
+      "file": "Web-Cv9Q8IXj.js",
       "bytes": 7014,
-      "gzipBytes": 2172
+      "gzipBytes": 2175
     },
     {
-      "file": "Social-BOhVY07P.js",
+      "file": "Social-Bx1sYDvN.js",
       "bytes": 6792,
-      "gzipBytes": 2024
+      "gzipBytes": 2022
     },
     {
-      "file": "select-DA8u1RW1.js",
+      "file": "select-Bci4H6Vn.js",
       "bytes": 5844,
-      "gzipBytes": 1515
+      "gzipBytes": 1516
     },
     {
-      "file": "LiquidGlass-CDoxBLCX.js",
+      "file": "LiquidGlass-CiLsMwzL.js",
       "bytes": 5716,
-      "gzipBytes": 1772
+      "gzipBytes": 1773
     },
     {
-      "file": "AuthPage-C-7VNV_0.js",
+      "file": "AuthPage-Cq-Qox0v.js",
       "bytes": 5619,
-      "gzipBytes": 1518
+      "gzipBytes": 1519
     },
     {
       "file": "QuickprintzForm-WeVVDv6v.js",
@@ -192,19 +192,19 @@
       "gzipBytes": 991
     },
     {
-      "file": "table-CdapB8Q3.js",
+      "file": "table-BUeXmSqh.js",
       "bytes": 3753,
-      "gzipBytes": 947
+      "gzipBytes": 948
     },
     {
-      "file": "Portfolio-BKqvre1r.js",
+      "file": "Portfolio-f8lxVEY2.js",
       "bytes": 3321,
-      "gzipBytes": 1091
+      "gzipBytes": 1093
     },
     {
-      "file": "ProofStrip-DefoSqmg.js",
+      "file": "ProofStrip-CKr0Pam9.js",
       "bytes": 3190,
-      "gzipBytes": 1095
+      "gzipBytes": 1097
     },
     {
       "file": "Show-gQ3LkjzS.js",
@@ -212,39 +212,39 @@
       "gzipBytes": 1183
     },
     {
-      "file": "button-DH7KIZM4.js",
+      "file": "button-CnVqtsAf.js",
       "bytes": 2716,
-      "gzipBytes": 1032
+      "gzipBytes": 1030
     },
     {
-      "file": "AuthCard-Cr87i09Q.js",
+      "file": "AuthCard-CY-ZUUj0.js",
       "bytes": 2264,
-      "gzipBytes": 855
+      "gzipBytes": 854
     },
     {
-      "file": "card-lL7pcyiT.js",
+      "file": "card-BlIHIVFZ.js",
       "bytes": 1930,
-      "gzipBytes": 584
+      "gzipBytes": 589
     },
     {
-      "file": "tabs-BQD2aTcT.js",
+      "file": "tabs-DS_IX4Ub.js",
       "bytes": 1798,
-      "gzipBytes": 652
+      "gzipBytes": 658
     },
     {
-      "file": "PremiumButton-B-ffu-TW.js",
+      "file": "PremiumButton-BeZyWatL.js",
       "bytes": 1536,
-      "gzipBytes": 694
+      "gzipBytes": 696
     },
     {
-      "file": "Auth-CgQijFOz.js",
+      "file": "Auth-CpZfzb3h.js",
       "bytes": 1415,
       "gzipBytes": 632
     },
     {
-      "file": "TdDesigns-blRO2wZi.js",
+      "file": "TdDesigns-DhS6RdHL.js",
       "bytes": 1263,
-      "gzipBytes": 613
+      "gzipBytes": 614
     },
     {
       "file": "NotFound-CkObw7ft.js",
@@ -257,29 +257,29 @@
       "gzipBytes": 498
     },
     {
-      "file": "GlassCard-QYgJhK0a.js",
+      "file": "GlassCard-BO_-UH_G.js",
       "bytes": 1032,
-      "gzipBytes": 547
+      "gzipBytes": 548
     },
     {
-      "file": "badge-DkEmBztR.js",
+      "file": "badge-02oVFd-P.js",
       "bytes": 1026,
       "gzipBytes": 514
     },
     {
-      "file": "input-ZCoLsq6e.js",
+      "file": "input-ma164ne6.js",
       "bytes": 963,
-      "gzipBytes": 520
+      "gzipBytes": 521
     },
     {
-      "file": "separator-BSl-iS2U.js",
+      "file": "separator-BySV5EX7.js",
       "bytes": 766,
-      "gzipBytes": 425
+      "gzipBytes": 426
     },
     {
-      "file": "label-89hcqkH_.js",
+      "file": "label-B5bOVVXd.js",
       "bytes": 678,
-      "gzipBytes": 412
+      "gzipBytes": 414
     },
     {
       "file": "supabase-DapSggll.js",
@@ -287,9 +287,9 @@
       "gzipBytes": 453
     },
     {
-      "file": "use-cart-aWteydzl.js",
+      "file": "use-cart-C1z5ly-o.js",
       "bytes": 361,
-      "gzipBytes": 255
+      "gzipBytes": 258
     }
   ]
 }
