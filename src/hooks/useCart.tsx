@@ -1,23 +1,7 @@
-import React, { createContext, useEffect, useMemo, useState, useCallback } from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
+import { CartContext, type CartContextValue, type CartItem } from './cart-context';
 
-export type CartItem = {
-  id: string;
-  name: string;
-  image: string;
-  subtitle?: string;
-  quantity: number;
-};
-
-type CartContextValue = {
-  items: CartItem[];
-  totalCount: number;
-  addItem: (item: { name: string; image: string; subtitle?: string }) => void;
-  decreaseItem: (id: string) => void;
-  removeItem: (id: string) => void;
-  clear: () => void;
-};
-
-export const CartContext = createContext<CartContextValue | null>(null);
+export type { CartContextValue, CartItem } from './cart-context';
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);

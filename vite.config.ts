@@ -100,38 +100,77 @@ const devPlugins: Plugin[] = [
 ];
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  server: {
-    host: "::",
-    port: Number(process.env.PORT) || 8081,
-  },
-  plugins: [
-    react(),
-    ...(mode === 'development' ? devPlugins : []),
-    visualizer({ open: true }),
-  ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+export default defineConfig(({ mode }) => {
+  const isDev = mode === "development";
+  const isAnalyze = mode === "analyze";
+
+  return {
+    server: {
+      host: "::",
+      port: Number(process.env.PORT) || 8081,
     },
-  },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'supabase-vendor': ['@supabase/supabase-js', '@tanstack/react-query'],
-          'ui-vendor': [
-            '@radix-ui/react-accordion',
-            '@radix-ui/react-alert-dialog',
-            '@radix-ui/react-aspect-ratio',
-            '@radix-ui/react-avatar',
-            // ... add other @radix-ui modules if needed
-          ],
-          'charts-vendor': ['recharts'],
-          'utils-vendor': ['clsx', 'tailwind-merge', 'date-fns'],
-        }
-      }
-    }
-  }
-}));
+    plugins: [
+      react(),
+      ...(isDev ? devPlugins : []),
+      ...(mode === "production" || isAnalyze
+        ? [
+            visualizer({
+              filename: isAnalyze ? "dist-analyze/stats.html" : "dist/stats.html",
+              open: false,
+              gzipSize: true,
+              brotliSize: true,
+            }),
+          ]
+        : []),
+    ],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
+    },
+    build: {
+      sourcemap: true,
+      minify: isAnalyze ? false : "terser",
+      outDir: isAnalyze ? "dist-analyze" : undefined,
+      terserOptions: isAnalyze
+        ? undefined
+        : {
+            compress: {
+              passes: 2,
+            },
+            format: {
+              comments: false,
+            },
+          },
+      chunkSizeWarningLimit: 900,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            "react-vendor": ["react", "react-dom", "react-router-dom"],
+            "supabase-vendor": ["@supabase/supabase-js", "@tanstack/react-query"],
+            "ui-vendor": [
+              "@radix-ui/react-accordion",
+              "@radix-ui/react-alert-dialog",
+              "@radix-ui/react-aspect-ratio",
+              "@radix-ui/react-avatar",
+              "@radix-ui/react-checkbox",
+              "@radix-ui/react-dialog",
+              "@radix-ui/react-dropdown-menu",
+              "@radix-ui/react-hover-card",
+              "@radix-ui/react-label",
+              "@radix-ui/react-popover",
+              "@radix-ui/react-progress",
+              "@radix-ui/react-select",
+              "@radix-ui/react-separator",
+              "@radix-ui/react-tabs",
+              "@radix-ui/react-tooltip",
+              "lucide-react",
+            ],
+            "charts-vendor": ["recharts"],
+            "utils-vendor": ["clsx", "tailwind-merge", "date-fns"],
+          },
+        },
+      },
+    },
+  };
+});

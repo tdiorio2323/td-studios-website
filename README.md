@@ -60,6 +60,10 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Contributor Guide
+
+Review the repository conventions and workflows in [AGENTS.md](AGENTS.md) before opening a pull request.
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/dbcb82db-3a5c-4d43-86a6-c004351ecb04) and click on Share -> Publish.
