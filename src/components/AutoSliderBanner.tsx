@@ -1,7 +1,7 @@
 import React from "react";
 import Picture from "./Picture";
 
-const HERO_IMAGE = "/03836203_medium.jpg";
+const HERO_IMAGE = "/td-halloween-hero.png";
 
 export const AutoSliderBanner: React.FC = () => {
   return (
