@@ -10,16 +10,29 @@ This is a **single-level repository** with all source code, configuration, and b
 
 ## Development Commands
 
+**Core Development**:
 - `npm run dev` - Start Vite development server (port 8081 by default, configurable via PORT env var)
+- `npm i` - Install dependencies
+
+**Building & Analysis**:
 - `npm run build` - Production build (auto-generates shop manifest before build, opens bundle visualizer)
 - `npm run build:dev` - Development build without optimizations
+- `npm run preview` - Preview production build locally (port 4173)
+- `npm run analyze` - Build with bundle analysis (outputs to dist-analyze/ with stats.html)
+
+**Code Quality**:
+- `npm run typecheck` - Type check without emitting files
 - `npm run lint` - Run ESLint with React hooks rules
-- `npx tsc --noEmit` - Type check without emitting files
-- `npm run preview` - Preview production build locally
-- `npm i` - Install dependencies
-- `npm run gen:page` - Generate new page with automatic routing setup
-- `npm run capture:all` - Generate screenshots of all pages for documentation
+- `npm run lint:fix` - Auto-fix ESLint issues
+
+**Testing**:
+- `npm test` - Run Vitest tests once
+- `npm run test:watch` - Run Vitest in watch mode
+- `npm run capture:all` - Generate Playwright screenshots of all pages for documentation
 - `npm run capture:preview` - Generate screenshots and open preview
+
+**Code Generation & Deployment**:
+- `npm run gen:page` - Interactive script to generate new page with automatic routing setup
 - `npm run deploy:hook` - Trigger Vercel deployment via webhook (requires VERCEL_DEPLOY_HOOK_URL in .env.local)
 
 ## Environment Setup
@@ -48,13 +61,18 @@ This is a React application built with Vite, TypeScript, and shadcn/ui component
 
 **CoreLayout Routes** (TD Studios Main Site):
 - `/` - TD Studios homepage with premium design showcase
+- `/web` - Web development services
+- `/dev` - Development services
+- `/social` - Social media services
+- `/portfolio` - Portfolio showcase
 - `/shop` - Customer shopping interface (cannabis products)
 - `/mylar-designs` - Mylar packaging design gallery
 - `/custom-designs` - Custom design services
 - `/social-content` - Social media content packs
 - `/digital-assets` - Digital design assets and downloads
 - `/custom-mylar-form` - Custom mylar request form
-- `/custom-websites` - Website development services
+- `/custom-websites` - Website development services form
+- `/custom-design-form` - Custom design request form
 - `/referral` - Referral program
 - `/contact` - Contact form
 - `/checkout` - Shopping cart checkout flow
@@ -63,7 +81,12 @@ This is a React application built with Vite, TypeScript, and shadcn/ui component
 - `/admin` - Super admin dashboard
 - `/brand` - Brand/dispensary dashboard
 - `/auth` - Authentication page
-- `/tdstudios`, `/bagman_ny`, `/quickprintz`, etc. - Individual brand pages
+- `/tdstudios` - TD Studios brand page
+- `/tddesigns` - TD Designs brand page
+- `/quickprintz` - QuickPrintz brand page
+- `/quickprintz/form` - QuickPrintz form
+- `/show` - Show page
+- `/tdreferall` - TD Referral page
 
 **Developer Routes**:
 - `/__builder` - Page builder interface
@@ -168,10 +191,27 @@ This is a React application built with Vite, TypeScript, and shadcn/ui component
 - `npm run capture:all` - Playwright screenshots of all pages
 - Auto-generated screenshot gallery at `screenshots/index.html`
 
+**Build Optimization**:
+- Production builds use Terser minification with 2-pass compression
+- Manual vendor chunk splitting configured in `vite.config.ts`:
+  - `react-vendor` - React, React DOM, React Router DOM
+  - `supabase-vendor` - Supabase client, TanStack Query
+  - `ui-vendor` - Radix UI components, Lucide icons
+  - `charts-vendor` - Recharts library
+  - `utils-vendor` - clsx, tailwind-merge, date-fns
+- Sourcemaps enabled in production builds
+- Chunk size warning limit: 900kb
+
+**Bundle Analysis**:
+- `npm run analyze` - Special build mode with unminified code and detailed stats
+- Outputs to `dist-analyze/` directory with `stats.html` bundle visualization
+- Uses rollup-plugin-visualizer with gzip and brotli size analysis
+- Regular production builds also generate stats in `dist/stats.html`
+
 **Deployment**:
 - Vercel auto-deploy on main branch push
 - Manual deploy via `npm run deploy:hook` (reads `VERCEL_DEPLOY_HOOK_URL` from `.env.local`)
-- Bundle analysis via rollup-plugin-visualizer opens automatically after builds
+- Build artifacts: `dist/` (production) or `dist-analyze/` (analyze mode)
 
 ## Project Context
 
@@ -207,10 +247,26 @@ The dual nature requires careful routing: main business pages use CoreLayout for
 
 ## Testing
 
-- **Typecheck**: `npx tsc --noEmit` (no npm script alias currently)
-- **Lint**: `npm run lint`
-- **Playwright**: Installed for screenshot automation (`npm run capture:all`)
-- **Future**: Automated testing for dynamic routes and SEO validation
+**Unit Testing**:
+- Framework: Vitest with jsdom environment
+- Configuration: `vitest.config.ts` with React plugin and path aliases
+- Setup file: `vitest.setup.ts` for global test configuration
+- Run tests: `npm test` (once) or `npm run test:watch` (watch mode)
+- Coverage: Available via Vitest with text and HTML reporters
+
+**Type Checking**:
+- `npm run typecheck` - TypeScript type checking without emitting files
+- Note: Project uses relaxed TS settings for rapid development (noImplicitAny: false, strictNullChecks: false)
+
+**Linting**:
+- `npm run lint` - Check for issues
+- `npm run lint:fix` - Auto-fix issues
+- ESLint with React hooks and refresh plugins
+
+**E2E/Visual Testing**:
+- Playwright installed for screenshot automation
+- `npm run capture:all` - Generate screenshots of all pages
+- Auto-generated screenshot gallery at `screenshots/index.html`
 
 ## HMR Hygiene Playbook
 

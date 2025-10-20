@@ -9,12 +9,15 @@ export default function Web() {
     <div className="min-h-screen bg-black text-white">
       <section className="relative overflow-hidden h-[42vh] md:h-[60vh] rounded-2xl mx-6 mt-6">
         <div className="absolute inset-0">
-          <img
-            src="/images/TD HOT TUB.png"
-            alt="TD Studios web showcase"
-            className="h-full w-full object-cover rounded-2xl"
-            loading="lazy"
-          />
+          <picture>
+            <source srcSet="/services-halloween-mansion.webp" type="image/webp" />
+            <img
+              src="/services-halloween-mansion.jpg"
+              alt="TD Studios web showcase"
+              className="h-full w-full object-cover rounded-2xl"
+              loading="lazy"
+            />
+          </picture>
         </div>
       </section>
 

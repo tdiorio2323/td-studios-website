@@ -10,12 +10,15 @@ export default function Dev() {
     <div className="min-h-screen bg-black text-white">
       <section className="relative overflow-hidden h-[42vh] md:h-[60vh] rounded-2xl mx-6 mt-6">
         <div className="absolute inset-0">
-          <img
-            src="/images/para.webp"
-            alt="TD Studios development"
-            className="h-full w-full object-cover rounded-2xl"
-            loading="lazy"
-          />
+          <picture>
+            <source srcSet="/services-halloween-house.webp" type="image/webp" />
+            <img
+              src="/services-halloween-house.jpg"
+              alt="TD Studios development"
+              className="h-full w-full object-cover rounded-2xl"
+              loading="lazy"
+            />
+          </picture>
         </div>
       </section>
 

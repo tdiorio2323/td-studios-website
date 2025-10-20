@@ -9,12 +9,15 @@ export default function Social() {
     <div className="min-h-screen bg-black text-white">
       <section className="relative overflow-hidden h-[42vh] md:h-[60vh] rounded-2xl mx-6 mt-6">
         <div className="absolute inset-0">
-          <img
-            src="/images/RED CHROME.jpg"
-            alt="TD Studios social campaign"
-            className="h-full w-full object-cover rounded-2xl"
-            loading="lazy"
-          />
+          <picture>
+            <source srcSet="/services-halloween-pool.webp" type="image/webp" />
+            <img
+              src="/services-halloween-pool.jpg"
+              alt="TD Studios social campaign"
+              className="h-full w-full object-cover rounded-2xl"
+              loading="lazy"
+            />
+          </picture>
         </div>
       </section>
 
